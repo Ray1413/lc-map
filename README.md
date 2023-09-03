@@ -6,6 +6,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-nex
 
 npx create-next-app -e https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs LC-Map
 
+npm i react-leaflet @maplibre/maplibre-gl-leaflet
+
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->

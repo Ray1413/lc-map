@@ -12,13 +12,15 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@maplibre/maplibre-gl-leaflet": "^0.0.19",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "next": "13.x",
     "react": "18.x",
-    "react-dom": "18.x"
+    "react-dom": "18.x",
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "prettier": "3.0.3"

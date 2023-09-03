@@ -2,14 +2,18 @@ import * as React from 'react'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 
 export const metadata = {
-  title: 'Next.js App Router + Material UI v5',
-  description: 'Next.js App Router + Material UI v5',
+  title: 'LC Map',
+  description: 'LC Map',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <link rel="stylesheet" href="./css/leaflet.css"></link>
+        <link rel="stylesheet" href="./css/maplibre-gl.css"></link>
+      </head>
+      <body style={{ background: 'lightsteelblue' }}>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>
