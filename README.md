@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-nex
 
 ## How to use
 
+npx create-next-app -e https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs LC-Map
+
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
 <!-- #default-branch-switch -->
