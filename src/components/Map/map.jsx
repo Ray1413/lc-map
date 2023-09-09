@@ -12,6 +12,7 @@ import {
 } from 'react-leaflet'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import HKVectorTileLayer from './HKVectorTileLayer'
+import Control from './Control'
 
 function Map() {
   let zoom = 11
@@ -36,6 +37,8 @@ function Map() {
         maxBoundsViscosity={0.5}
         style={{ height: '100%' }}
       >
+        <Control />
+
         <HKVectorTileLayer url="https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/basemap/WGS84/resources/styles/root.json" />
         <HKVectorTileLayer
           url={`https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/label/hk/${lang}/WGS84/resources/styles/root.json`}
