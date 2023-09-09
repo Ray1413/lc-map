@@ -12,6 +12,7 @@ import {
 } from 'react-leaflet'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import HKVectorTileLayer from './HKVectorTileLayer'
+import AttributionPrefix from './AttributionPrefix'
 import Control from './Control'
 
 function Map() {
@@ -37,6 +38,7 @@ function Map() {
         maxBoundsViscosity={0.5}
         style={{ height: '100%' }}
       >
+        <AttributionPrefix />
         <Control />
 
         <HKVectorTileLayer url="https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/basemap/WGS84/resources/styles/root.json" />
