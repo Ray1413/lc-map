@@ -10,6 +10,7 @@ import {
   Rectangle,
   GeoJSON,
 } from 'react-leaflet'
+import useGlobalSetting from '@/hooks/useGlobalSetting'
 import HKVectorTileLayer from './HKVectorTileLayer'
 
 function Map() {
@@ -21,7 +22,9 @@ function Map() {
     [22.583333, 113.816667],
     [22.133333, 114.516667],
   ]
-  const lang = 'tc'
+
+  const { lang } = useGlobalSetting()
+
   return (
     <div style={{ height: '100vh' }}>
       <MapContainer

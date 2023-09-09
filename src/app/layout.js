@@ -1,5 +1,6 @@
 import * as React from 'react'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
+import AppProvider from '@/components/AppProvider'
 
 export const metadata = {
   title: 'LC Map',
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="./css/maplibre-gl.css"></link>
       </head>
       <body style={{ background: 'lightsteelblue' }}>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <AppProvider>
+          <ThemeRegistry>{children}</ThemeRegistry>
+        </AppProvider>
       </body>
     </html>
   )
