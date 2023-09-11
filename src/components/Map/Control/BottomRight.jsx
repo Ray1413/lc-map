@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { useTheme } from '@mui/material'
 import { useMap } from 'react-leaflet'
 import Box from '@mui/material/Box'
@@ -18,6 +19,7 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import { blue } from '@mui/material/colors'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
+import { i18n } from '@/resources'
 
 const selectedBtnStyle = {
   '&:hover': {
@@ -48,7 +50,10 @@ function BottomRight() {
     setIsSearchPanelOpen,
     fetchingDataset,
     geojsonData,
+    getResource,
   } = useGlobalSetting()
+
+  const resource = getResource()
 
   useEffect(() => {
     map.on('zoomend', onZoomEnd)
@@ -63,8 +68,14 @@ function BottomRight() {
     setOpen(false)
   }
 
-  const handleLangChange = (lang) => {
-    setLang(lang)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleLangChange = (newLang) => {
+    // setLang(lang)
+    router.replace(pathname.replace(`/${lang}`, `/${newLang}`), {
+      scroll: false,
+    })
     setOpen(false)
   }
 
@@ -196,27 +207,23 @@ function BottomRight() {
         maxWidth="xs"
         open={open}
       >
-        <DialogTitle>Language</DialogTitle>
+        <DialogTitle>{resource.language}</DialogTitle>
         <DialogContent dividers>
-          <Stack sx={{ '& > button': { marginBottom: 0.5 } }}>
-            <Button
-              size="large"
-              sx={lang == 'tc' ? selectedBtnStyle : null}
-              onClick={() => handleLangChange('tc')}
-            >
-              中
-            </Button>
-            <Button
-              size="large"
-              sx={lang == 'en' ? selectedBtnStyle : null}
-              onClick={() => handleLangChange('en')}
-            >
-              English
-            </Button>
+          <Stack sx={{ '& > button': { marginBottom: 0.5, fontWeight: 600 } }}>
+            {i18n.map(({ locale, displayName }) => (
+              <Button
+                key={locale}
+                size="large"
+                sx={lang == locale ? selectedBtnStyle : null}
+                onClick={() => handleLangChange(locale)}
+              >
+                {displayName}
+              </Button>
+            ))}
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>{resource.cancel}</Button>
         </DialogActions>
       </Dialog>
     </Box>

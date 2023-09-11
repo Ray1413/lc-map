@@ -3,14 +3,17 @@ import Box from '@mui/material/Box'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 
 function TopLeft() {
-  const { lang } = useGlobalSetting()
+  const { lang, getResource } = useGlobalSetting()
+  // console.log(getResource)
+  // const resource = getResource()
+  // console.log(resource)
 
   return (
     <Box className="leaflet-top leaflet-left">
       <Box className="leaflet-control">
         <div>
-          Debug: <br />
-          {'Language: ' + lang}
+          <div>Debug: </div>
+          <div>{'Language: ' + lang}</div>
         </div>
       </Box>
     </Box>

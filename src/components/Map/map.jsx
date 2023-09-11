@@ -26,6 +26,17 @@ function Map() {
   ]
 
   const { lang } = useGlobalSetting()
+  let langValue
+  switch (lang) {
+    case 'zh':
+      langValue = 'tc'
+      break
+    case 'en':
+      langValue = 'en'
+      break
+    default:
+      langValue = 'tc'
+  }
 
   return (
     <div style={{ height: '100vh' }}>
@@ -43,7 +54,7 @@ function Map() {
 
         <HKVectorTileLayer url="https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/basemap/WGS84/resources/styles/root.json" />
         <HKVectorTileLayer
-          url={`https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/label/hk/${lang}/WGS84/resources/styles/root.json`}
+          url={`https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/label/hk/${langValue}/WGS84/resources/styles/root.json`}
           pane="overlayPane"
         />
       </MapContainer>

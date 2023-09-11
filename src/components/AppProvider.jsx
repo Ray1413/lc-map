@@ -5,8 +5,8 @@ import {
   useDefaultSetting,
 } from '@/hooks/useGlobalSetting'
 
-function AppProvider({ children }) {
-  const defaultSetting = useDefaultSetting()
+function AppProvider({ children, lang }) {
+  const defaultSetting = useDefaultSetting(lang)
 
   return (
     <GlobalSettingContextProvider value={defaultSetting}>

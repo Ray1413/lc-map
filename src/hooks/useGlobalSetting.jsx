@@ -1,13 +1,16 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
+import useResource from './useResource'
 
 const GlobalSettingContext = createContext(null)
 
 const GlobalSettingContextProvider = GlobalSettingContext.Provider
 
-const useDefaultSetting = () => {
-  const [lang, setLang] = useState('tc')
+const useDefaultSetting = (defaultLang) => {
+  const [lang, setLang] = useState(defaultLang)
+
+  const getResource = useResource(lang)
 
   const [datasetInfo, setDatasetInfo] = useState({})
 
@@ -87,6 +90,7 @@ const useDefaultSetting = () => {
     setSelectedCategory,
     selectedProvider,
     setSelectedProvider,
+    getResource,
   }
   return defaultSetting
 }
