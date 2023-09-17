@@ -1,19 +1,19 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
+import { useParams } from 'next/navigation'
 
 function TopLeft() {
-  const { lang, getResource } = useGlobalSetting()
-  // console.log(getResource)
-  // const resource = getResource()
-  // console.log(resource)
+  const { resource } = useGlobalSetting()
+  const { language } = useParams()
+  console.log('TopLeft')
 
   return (
     <Box className="leaflet-top leaflet-left">
       <Box className="leaflet-control">
         <div>
           <div>Debug: </div>
-          <div>{'Language: ' + lang}</div>
+          <div>{'Language: ' + language}</div>
         </div>
       </Box>
     </Box>

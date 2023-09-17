@@ -9,6 +9,8 @@ export const i18n = [
   },
 ]
 
+export const locales = i18n.map((item) => item.locale)
+
 export const defaultLocale = i18n[0].locale
 
 // export const resources = {
@@ -24,9 +26,6 @@ export const resources = i18n.reduce((result, item) => {
       ),
   }
 }, {})
-
-// export const locales = Object.keys(resources)
-export const locales = i18n.map((item) => item.locale)
 
 export const getResource = async (locale) =>
   resources[locale]?.() ?? resources[defaultLocale]()

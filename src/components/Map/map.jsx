@@ -10,6 +10,7 @@ import {
   Rectangle,
   GeoJSON,
 } from 'react-leaflet'
+import { useParams } from 'next/navigation'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import HKVectorTileLayer from './HKVectorTileLayer'
 import AttributionPrefix from './AttributionPrefix'
@@ -25,9 +26,9 @@ function Map() {
     [22.133333, 114.516667],
   ]
 
-  const { lang } = useGlobalSetting()
+  const { language } = useParams()
   let langValue
-  switch (lang) {
+  switch (language) {
     case 'zh':
       langValue = 'tc'
       break

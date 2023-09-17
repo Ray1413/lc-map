@@ -20,6 +20,7 @@ import Stack from '@mui/material/Stack'
 import { blue } from '@mui/material/colors'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import { i18n } from '@/resources'
+import { useParams } from 'next/navigation'
 
 const selectedBtnStyle = {
   '&:hover': {
@@ -44,16 +45,14 @@ function BottomRight() {
   }
 
   const {
-    lang,
-    setLang,
+    resource,
     setSearchPanelLoaded,
     setIsSearchPanelOpen,
     fetchingDataset,
     geojsonData,
-    getResource,
   } = useGlobalSetting()
 
-  const resource = getResource()
+  const { language: lang } = useParams()
 
   useEffect(() => {
     map.on('zoomend', onZoomEnd)
@@ -72,7 +71,7 @@ function BottomRight() {
   const router = useRouter()
 
   const handleLangChange = (newLang) => {
-    // setLang(lang)
+    // setLang(newLang)
     router.replace(pathname.replace(`/${lang}`, `/${newLang}`), {
       scroll: false,
     })
