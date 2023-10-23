@@ -21,6 +21,7 @@ import { blue } from '@mui/material/colors'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import { i18n } from '@/resources'
 import { useParams } from 'next/navigation'
+import SearchDialog from '../searchDialog'
 
 const selectedBtnStyle = {
   '&:hover': {
@@ -200,6 +201,8 @@ function BottomRight() {
           <TranslateIcon />
         </Fab>
       </Box>
+
+      <SearchDialog />
 
       <Dialog
         sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}

@@ -10,13 +10,13 @@ const useDefaultSetting = () => {
   // const [lang, setLang] = useState(defaultLang)
   const [resource, setResource] = useState({})
 
-  // const [datasetInfo, setDatasetInfo] = useState({})
+  const [datasetInfo, setDatasetInfo] = useState({})
 
-  // const [searchPanelLoaded, setSearchPanelLoaded] = useState(false)
-  // const [isSearchPanelOpen, setIsSearchPanelOpen] = useState(false)
+  const [searchPanelLoaded, setSearchPanelLoaded] = useState(false)
+  const [isSearchPanelOpen, setIsSearchPanelOpen] = useState(false)
 
   // const [selectedDatasetId, setSelectedDatasetId] = useState(null)
-  // const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState({})
   // const [selectedProvider, setSelectedProvider] = useState(null)
 
   // const [geojsonURL, setGeojsonURL] = useState(null)
@@ -24,7 +24,7 @@ const useDefaultSetting = () => {
 
   // const [fetchingDataset, setFetchingDataset] = useState(false)
 
-  // const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('')
 
   // const handleDatasetItemClick = (event, id, url) => {
   //   setGeojsonData(null)
@@ -71,12 +71,12 @@ const useDefaultSetting = () => {
     // setLang,
     resource,
     setResource,
-    // datasetInfo,
-    // setDatasetInfo,
-    // searchPanelLoaded,
-    // setSearchPanelLoaded,
-    // isSearchPanelOpen,
-    // setIsSearchPanelOpen,
+    datasetInfo,
+    setDatasetInfo,
+    searchPanelLoaded,
+    setSearchPanelLoaded,
+    isSearchPanelOpen,
+    setIsSearchPanelOpen,
     // selectedDatasetId,
     // handleDatasetItemClick,
     // geojsonURL,
@@ -84,10 +84,10 @@ const useDefaultSetting = () => {
     // geojsonData,
     // setGeojsonData,
     // fetchingDataset,
-    // searchText,
-    // setSearchText,
-    // selectedCategory,
-    // setSelectedCategory,
+    searchText,
+    setSearchText,
+    selectedCategory,
+    setSelectedCategory,
     // selectedProvider,
     // setSelectedProvider,
   }

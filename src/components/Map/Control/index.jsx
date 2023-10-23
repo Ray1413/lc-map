@@ -8,7 +8,7 @@ import BottomRight from './BottomRight'
 
 function Control() {
   const map = useMap()
-  console.log('Control')
+  // console.log('Control')
   map.zoomControl.remove()
 
   return (
