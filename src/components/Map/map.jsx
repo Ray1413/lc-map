@@ -1,5 +1,5 @@
 'use client'
-
+import { useEffect } from 'react'
 import {
   MapContainer,
   ScaleControl,
@@ -16,6 +16,7 @@ import HKVectorTileLayer from './HKVectorTileLayer'
 import AttributionPrefix from './AttributionPrefix'
 import Control from './Control'
 import useFilteredDataset from '@/hooks/useFilteredDataset'
+import fetchFacility from '@/utils/fetchFacility'
 
 function Map() {
   let zoom = 11
@@ -26,6 +27,8 @@ function Map() {
     [22.583333, 113.816667],
     [22.133333, 114.516667],
   ]
+
+  const { setDatasetInfo } = useGlobalSetting()
 
   // const markerList = dataset || []
   const markerList = useFilteredDataset()
@@ -43,6 +46,13 @@ function Map() {
     default:
       langValue = 'tc'
   }
+
+  useEffect(() => {
+    ;(async () => {
+      const info = await fetchFacility()
+      setDatasetInfo(info)
+    })()
+  }, [])
 
   return (
     <div style={{ height: '100vh' }}>
@@ -64,7 +74,7 @@ function Map() {
           pane="overlayPane"
         />
 
-        {markerList.slice(0, 5).map((m) => (
+        {markerList.slice(0, 50).map((m) => (
           <Marker key={m.title[0]} position={m.coordinates}>
             <Popup>
               {language === 'en' ? m.title[0] : m.title[1]}
