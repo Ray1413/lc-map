@@ -15,6 +15,7 @@ import useGlobalSetting from '@/hooks/useGlobalSetting'
 import HKVectorTileLayer from './HKVectorTileLayer'
 import AttributionPrefix from './AttributionPrefix'
 import Control from './Control'
+import useFilteredDataset from '@/hooks/useFilteredDataset'
 
 function Map() {
   let zoom = 11
@@ -25,6 +26,10 @@ function Map() {
     [22.583333, 113.816667],
     [22.133333, 114.516667],
   ]
+
+  // const markerList = dataset || []
+  const markerList = useFilteredDataset()
+  // console.log(markerList.length)
 
   const { language } = useParams()
   let langValue
@@ -58,6 +63,16 @@ function Map() {
           url={`https://mapapi.geodata.gov.hk/gs/api/v1.0.0/vt/label/hk/${langValue}/WGS84/resources/styles/root.json`}
           pane="overlayPane"
         />
+
+        {markerList.slice(0, 5).map((m) => (
+          <Marker key={m.title[0]} position={m.coordinates}>
+            <Popup>
+              {language === 'en' ? m.title[0] : m.title[1]}
+              <br />
+              {language === 'en' ? m.title[1] : m.title[0]}
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   )

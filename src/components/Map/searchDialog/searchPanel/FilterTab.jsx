@@ -26,6 +26,7 @@ import { escapeRegExp } from '../../../../utils/highlightText'
 import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 import { useParams } from 'next/navigation'
 // import { resources } from '@/resources'
+import useFilteredDataset from '@/hooks/useFilteredDataset'
 
 // const CategoryTabContentMemo = memo(CategoryTabContent)
 
@@ -129,33 +130,34 @@ function FilterTab({ searchText }) {
     // },
   ]
 
-  let dataset = useMemo(() => {
-    const keyword = escapeRegExp(searchText)
-    let dataset = datasetInfo.dataset || []
-    // .slice(0, 10)
+  // let dataset = useMemo(() => {
+  //   const keyword = escapeRegExp(searchText)
+  //   let dataset = datasetInfo.dataset || []
+  //   // .slice(0, 10)
 
-    if (selectedCategory.en) {
-      // dataset = dataset.filter((d) => d.category[0] == selectedCategory)
-      dataset = dataset.filter((d) => d.category.includes(selectedCategory.en))
-    }
-    if (selectedProvider) {
-      // dataset = dataset.filter((d) => d.provider[0] == selectedProvider)
-      dataset = dataset.filter((d) => d.provider.includes(selectedProvider))
-    }
+  //   if (selectedCategory.en) {
+  //     // dataset = dataset.filter((d) => d.category[0] == selectedCategory)
+  //     dataset = dataset.filter((d) => d.category.includes(selectedCategory.en))
+  //   }
+  //   if (selectedProvider) {
+  //     // dataset = dataset.filter((d) => d.provider[0] == selectedProvider)
+  //     dataset = dataset.filter((d) => d.provider.includes(selectedProvider))
+  //   }
 
-    dataset = dataset.filter(
-      (d) => d.title.filter((t) => new RegExp(keyword, 'ig').test(t)).length > 0
-      // ||
-      // d.category.filter((t) => new RegExp(keyword, 'ig').test(t)).length > 0
-    )
+  //   dataset = dataset.filter(
+  //     (d) => d.title.filter((t) => new RegExp(keyword, 'ig').test(t)).length > 0
+  //     // ||
+  //     // d.category.filter((t) => new RegExp(keyword, 'ig').test(t)).length > 0
+  //   )
 
-    // remove duplicates
-    dataset = dataset.filter(
-      (d, index) => index == dataset.findIndex((a) => a.title[0] == d.title[0])
-    )
+  //   // remove duplicates
+  //   dataset = dataset.filter(
+  //     (d, index) => index == dataset.findIndex((a) => a.title[0] == d.title[0])
+  //   )
 
-    return dataset
-  }, [datasetInfo, searchText, selectedCategory, selectedProvider])
+  //   return dataset
+  // }, [datasetInfo, searchText, selectedCategory, selectedProvider])
+  const dataset = useFilteredDataset()
 
   // const keyword = escapeRegExp(searchText)
   // let dataset = (datasetInfo.dataset || [])
@@ -208,6 +210,10 @@ function FilterTab({ searchText }) {
               ...d.feature.features.map((f) => ({
                 id: f.properties.GmlID,
                 category: d.apiso_Title_txt,
+                coordinates: {
+                  lng: f.geometry.coordinates[0],
+                  lat: f.geometry.coordinates[1],
+                },
                 title: [
                   f.properties.NAME_EN || f.properties.Facility_Name_EN,
                   f.properties.NAME_TC || f.properties.Facility_Name_TC,
@@ -230,6 +236,8 @@ function FilterTab({ searchText }) {
         //     )
         //     .filter((i) => i.properties.NAME_EN == null)
         // )
+
+        // console.log(info.dataset[0])
         setDatasetInfo(info)
       })
   }, [])
