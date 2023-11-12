@@ -15,6 +15,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="./css/leaflet.css"></link>
         <link rel="stylesheet" href="./css/maplibre-gl.css"></link>
+        <link rel="stylesheet" href="./css/MarkerCluster.css"></link>
+        <link rel="stylesheet" href="./css/MarkerCluster.Default.css"></link>
+        <link rel="stylesheet" href="./css/MarkerCluster.Custom.css"></link>
       </head>
       <body style={{ background: 'lightyellow' }}>
         <AppProvider>

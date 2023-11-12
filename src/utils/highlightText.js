@@ -6,6 +6,11 @@ function escapeRegExp(string) {
 const highlightText = (keyword, text) => {
   // console.log(`highlightText: ${text}`)
   keyword = escapeRegExp(keyword)
+
+  if (!keyword) {
+    return text
+  }
+
   const arr = []
   let currentPos = 0
   const re = new RegExp(keyword, 'idg')
@@ -28,7 +33,8 @@ const highlightText = (keyword, text) => {
   }
   const htmlStr = arr.join('')
 
-  return <span dangerouslySetInnerHTML={{ __html: htmlStr }} />
+  // return <span dangerouslySetInnerHTML={{ __html: htmlStr }} />
+  return htmlStr
 }
 
 export { escapeRegExp }

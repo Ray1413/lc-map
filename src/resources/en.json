@@ -2,5 +2,8 @@
   "language": "Language",
   "cancel": "Cancel",
   "facility": "facility",
-  "facilities": "facilities"
+  "facilities": "facilities",
+  "result": "result",
+  "results": "results",
+  "category": "category"
 }

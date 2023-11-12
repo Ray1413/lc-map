@@ -119,7 +119,8 @@ function FilterTab({ searchText }) {
 
   const tabList = [
     {
-      defaultTitle: 'Category',
+      key: 'category',
+      defaultTitle: resource['category'],
       selectedTitle: selectedCategory[language],
       icon: cateIconWithBadge,
     },
@@ -244,41 +245,43 @@ function FilterTab({ searchText }) {
               },
             }}
           >
-            {tabList.map(({ defaultTitle, selectedTitle, icon }, index) => (
-              <Tab
-                key={defaultTitle}
-                label={
-                  selectedTitle ? (
-                    <SpanWithTitle>{selectedTitle}</SpanWithTitle>
-                  ) : (
-                    <SpanWithTitle>{defaultTitle}</SpanWithTitle>
-                  )
-                }
-                // icon={
-                //   value === index ? (
-                //     <ExpandMoreIcon />
-                //   ) : (
-                //     <KeyboardArrowRightIcon />
-                //   )
-                // }
-                icon={icon}
-                iconPosition="start"
-                {...a11yProps(index)}
-                onClick={() => handleTabClick(index)}
-                sx={{
-                  // color: selectedTitle ? 'primary.main' : null,
-                  width: 150,
-                  maxHeight: 42,
-                  '& > span:first-of-type': {
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    flexGrow: 1,
-                    textAlign: 'start',
-                  },
-                }}
-              />
-            ))}
+            {tabList.map(
+              ({ key, defaultTitle, selectedTitle, icon }, index) => (
+                <Tab
+                  key={key}
+                  label={
+                    selectedTitle ? (
+                      <SpanWithTitle>{selectedTitle}</SpanWithTitle>
+                    ) : (
+                      <SpanWithTitle>{defaultTitle}</SpanWithTitle>
+                    )
+                  }
+                  // icon={
+                  //   value === index ? (
+                  //     <ExpandMoreIcon />
+                  //   ) : (
+                  //     <KeyboardArrowRightIcon />
+                  //   )
+                  // }
+                  icon={icon}
+                  iconPosition="start"
+                  {...a11yProps(index)}
+                  onClick={() => handleTabClick(index)}
+                  sx={{
+                    // color: selectedTitle ? 'primary.main' : null,
+                    width: 150,
+                    maxHeight: 42,
+                    '& > span:first-of-type': {
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      flexGrow: 1,
+                      textAlign: 'start',
+                    },
+                  }}
+                />
+              )
+            )}
           </Tabs>
         </Stack>
 
@@ -286,9 +289,7 @@ function FilterTab({ searchText }) {
           <Typography variant="subtitle">
             {dataset.length +
               `${language == 'en' ? ' ' : '個'}` +
-              (dataset.length > 1
-                ? resource['facilities']
-                : resource['facility'])}
+              (dataset.length > 1 ? resource['results'] : resource['result'])}
           </Typography>
         </Stack>
 

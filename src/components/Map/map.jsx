@@ -17,6 +17,7 @@ import AttributionPrefix from './AttributionPrefix'
 import Control from './Control'
 import useFilteredDataset from '@/hooks/useFilteredDataset'
 import fetchFacility from '@/utils/fetchFacility'
+import MarkerClusterLayer from './MarkerClusterLayer'
 
 function Map() {
   let zoom = 11
@@ -29,10 +30,6 @@ function Map() {
   ]
 
   const { setDatasetInfo } = useGlobalSetting()
-
-  // const markerList = dataset || []
-  const markerList = useFilteredDataset()
-  // console.log(markerList.length)
 
   const { language } = useParams()
   let langValue
@@ -47,9 +44,29 @@ function Map() {
       langValue = 'tc'
   }
 
+  // const markerList = dataset || []
+  const markerList = useFilteredDataset().map((d) => d.marker)
+
   useEffect(() => {
     ;(async () => {
       const info = await fetchFacility()
+      info.dataset = info.dataset.map((d) => {
+        const marker = L.marker(d.coordinates).bindPopup(
+          // language == 'en' ? m.title[0] : m.title[1]
+          `<div>
+            <div>${d.resources[language]['title']}</div>
+            <div>${d.resources[language]['address']}</div>
+            <div class='facility'>${d.resources[language]['facilities']}</div>
+          </div>`,
+          { className: 'popup-card' }
+        )
+
+        return {
+          ...d,
+          marker,
+        }
+      })
+      // console.log(info.dataset.slice(0, 4))
       setDatasetInfo(info)
     })()
   }, [])
@@ -74,7 +91,7 @@ function Map() {
           pane="overlayPane"
         />
 
-        {markerList.slice(0, 50).map((m) => (
+        {/* {markerList.slice(0, 50).map((m) => (
           <Marker key={m.title[0]} position={m.coordinates}>
             <Popup>
               {language === 'en' ? m.title[0] : m.title[1]}
@@ -82,7 +99,12 @@ function Map() {
               {language === 'en' ? m.title[1] : m.title[0]}
             </Popup>
           </Marker>
-        ))}
+        ))} */}
+
+        {/* {language === 'en' ? null : (
+          <MarkerClusterLayer markerList={markerList} />
+        )} */}
+        <MarkerClusterLayer markerList={markerList} />
       </MapContainer>
     </div>
   )

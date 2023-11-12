@@ -30,26 +30,66 @@ const RenderRow = memo((props) => {
 
   const indexStr = `${index + 1}. `
 
-  const { selectedDatasetId, handleDatasetItemClick, searchText } =
-    useGlobalSetting()
-
-  const selected = dataset[index]['title'][0] === selectedDatasetId
+  const {
+    selectedDatasetId,
+    handleDatasetItemClick,
+    searchText,
+    setIsSearchPanelOpen,
+    setSelectedFacility,
+  } = useGlobalSetting()
+  const resources = dataset[index]['resources']
+  // const selected = dataset[index]['title'][0] === selectedDatasetId
+  const selected = resources[language]['title'][0] === selectedDatasetId
 
   // const titleHighlighted =
   //   dataset[index]['titleHighlighted'] || dataset[index]['title']
 
-  const titleHighlighted = searchText
-    ? dataset[index]['title'].map((t) => highlightText(searchText, t))
-    : dataset[index]['title']
+  // const titleHighlighted = searchText
+  //   ? dataset[index]['title'].map((t) => highlightText(searchText, t))
+  //   : dataset[index]['title']
 
-  // const cateHighlighted = searchText
-  //   ? dataset[index]['category'].map((t) => highlightText(searchText, t))
-  //   : dataset[index]['category']
+  const title_en = resources['en']['title'] + '<br/>' + resources['zh']['title']
+  const title_zh = resources['zh']['title'] + '<br/>' + resources['en']['title']
+
+  const titleHighlighted_en =
+    highlightText(searchText, resources['en']['title']) +
+    '<br/>' +
+    highlightText(searchText, resources['zh']['title'])
+  const titleHighlighted_zh =
+    highlightText(searchText, resources['zh']['title']) +
+    '<br/>' +
+    highlightText(searchText, resources['en']['title'])
+
+  const titleHighlighted = {
+    en: <span dangerouslySetInnerHTML={{ __html: titleHighlighted_en }} />,
+    zh: <span dangerouslySetInnerHTML={{ __html: titleHighlighted_zh }} />,
+  }
+
+  const fac_en =
+    resources['en']['facilities'] + '<br/>' + resources['zh']['facilities']
+  const fac_zh =
+    resources['zh']['facilities'] + '<br/>' + resources['en']['facilities']
+
+  const facHighlighted_en =
+    highlightText(searchText, resources['en']['facilities']) +
+    '<br/>' +
+    highlightText(searchText, resources['zh']['facilities'])
+  const facHighlighted_zh =
+    highlightText(searchText, resources['zh']['facilities']) +
+    '<br/>' +
+    highlightText(searchText, resources['en']['facilities'])
+  const facHighlighted = {
+    en: <span dangerouslySetInnerHTML={{ __html: facHighlighted_en }} />,
+    zh: <span dangerouslySetInnerHTML={{ __html: facHighlighted_zh }} />,
+  }
+
+  const lineBreak = `
+`
 
   return (
     <ListItem
       style={style}
-      key={dataset[index]['title'][0]}
+      key={dataset[index]['resources']['en']['title']}
       component="div"
       disablePadding
     >
@@ -74,7 +114,12 @@ const RenderRow = memo((props) => {
         //     dataset[index]['geojsonURL']
         //   )
         // }
-        onClick={() => console.log(dataset[index])}
+        onClick={() => {
+          setIsSearchPanelOpen(false)
+          // setSelectedFacility(dataset[index])
+          setSelectedFacility({ ...dataset[index] })
+          // console.log(dataset[index])
+        }}
       >
         <ListItemIcon>
           {selected ? <HighlightOffIcon color="error" /> : <PlaceIcon />}
@@ -82,17 +127,22 @@ const RenderRow = memo((props) => {
         <ListItemText
           primary={
             <TitleWithIndex indexStr={indexStr}>
-              {titleHighlighted[language == 'en' ? 0 : 1]}
+              {/* {titleHighlighted[language == 'en' ? 0 : 1]} */}
+              {titleHighlighted[language]}
             </TitleWithIndex>
           }
-          secondary={titleHighlighted[language == 'en' ? 1 : 0]}
+          secondary={facHighlighted[language]}
           primaryTypographyProps={{
             sx: {
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
             },
-            title: indexStr + dataset[index]['title'][language == 'en' ? 0 : 1],
+            title:
+              indexStr +
+              (language == 'en'
+                ? title_en.replaceAll('<br/>', lineBreak)
+                : title_zh.replaceAll('<br/>', lineBreak)),
           }}
           secondaryTypographyProps={{
             sx: {
@@ -100,7 +150,10 @@ const RenderRow = memo((props) => {
               overflow: 'hidden',
               textOverflow: 'ellipsis',
             },
-            title: dataset[index]['category'][language == 'en' ? 0 : 1],
+            title:
+              language == 'en'
+                ? fac_en.replaceAll('<br/>', lineBreak)
+                : fac_zh.replaceAll('<br/>', lineBreak),
           }}
         />
       </ListItemButton>
@@ -138,7 +191,7 @@ function DatasetList({ dataset = [] }) {
               <FixedSizeList
                 height={height}
                 width={width}
-                itemSize={73}
+                itemSize={116}
                 itemCount={dataset.length}
                 overscanCount={5}
                 itemData={dataset}

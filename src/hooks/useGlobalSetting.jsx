@@ -15,6 +15,7 @@ const useDefaultSetting = () => {
   const [searchPanelLoaded, setSearchPanelLoaded] = useState(false)
   const [isSearchPanelOpen, setIsSearchPanelOpen] = useState(false)
 
+  const [selectedFacility, setSelectedFacility] = useState({})
   // const [selectedDatasetId, setSelectedDatasetId] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState({})
   // const [selectedProvider, setSelectedProvider] = useState(null)
@@ -90,6 +91,8 @@ const useDefaultSetting = () => {
     setSelectedCategory,
     // selectedProvider,
     // setSelectedProvider,
+    selectedFacility,
+    setSelectedFacility,
   }
   return defaultSetting
 }

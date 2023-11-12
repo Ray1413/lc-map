@@ -4,9 +4,9 @@ import { locales, getResource } from '@/resources'
 import useGlobalSetting from '@/hooks/useGlobalSetting'
 import { useEffect } from 'react'
 
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ language: locale }))
-}
+// export async function generateStaticParams() {
+//   return locales.map((locale) => ({ language: locale }))
+// }
 
 export default function Layout({ children, params: { language } }) {
   // console.log('Layout ')
