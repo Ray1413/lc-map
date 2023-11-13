@@ -10,8 +10,6 @@ import Popover from '@mui/material/Popover'
 import a11yProps from './a11yProps'
 // import dataset from './dataset_filtered.json'
 
-import CategoryTabContent from './CategoryTabContent'
-import ProviderTabContent from './ProviderTabContent'
 import RenderList from './RenderList'
 import TuneIcon from '@mui/icons-material/Tune'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -27,8 +25,6 @@ import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 import { useParams } from 'next/navigation'
 // import { resources } from '@/resources'
 import useFilteredDataset from '@/hooks/useFilteredDataset'
-
-// const CategoryTabContentMemo = memo(CategoryTabContent)
 
 function SpanWithTitle({ children }) {
   return <span title={children}>{children}</span>
