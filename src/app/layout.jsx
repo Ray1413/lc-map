@@ -3,6 +3,7 @@ import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 import AppProvider from '@/components/AppProvider'
 import Box from '@mui/material/Box'
 import Map from '@/components/Map'
+import Fpanel from '@/components/Fpanel'
 
 export const metadata = {
   title: 'LC Map',
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
           <ThemeRegistry>
             <Box>
               <Map />
+              <Fpanel />
             </Box>
             {children}
           </ThemeRegistry>

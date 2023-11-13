@@ -13,7 +13,7 @@ import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 
 import FilterTab from './FilterTab'
 
-function searchPanel() {
+function SearchPanel() {
   // const [searchText, setSearchText] = useState('')
   const { searchText, setSearchText } = useGlobalSetting()
 
@@ -25,4 +25,4 @@ function searchPanel() {
   )
 }
 
-export default searchPanel
+export default SearchPanel

@@ -15,6 +15,7 @@ import blue from '@mui/material/colors/blue'
 import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 import highlightText from '../../../../utils/highlightText'
 import { useParams } from 'next/navigation'
+import { useTheme } from '@mui/material'
 
 const TitleWithIndex = ({ indexStr, children }) => (
   <span>
@@ -25,6 +26,7 @@ const TitleWithIndex = ({ indexStr, children }) => (
 
 const RenderRow = memo((props) => {
   const { data: dataset, index, style } = props
+  const theme = useTheme()
 
   const { language } = useParams()
 
@@ -36,6 +38,7 @@ const RenderRow = memo((props) => {
     searchText,
     setIsSearchPanelOpen,
     setSelectedFacility,
+    setOpenFpanel,
   } = useGlobalSetting()
   const resources = dataset[index]['resources']
   // const selected = dataset[index]['title'][0] === selectedDatasetId
@@ -115,13 +118,20 @@ const RenderRow = memo((props) => {
         //   )
         // }
         onClick={() => {
-          setIsSearchPanelOpen(false)
+          // setIsSearchPanelOpen(false)
           // setSelectedFacility(dataset[index])
+          if (window.innerWidth < theme.breakpoints.values.sm) {
+            setOpenFpanel(false)
+          }
           setSelectedFacility({ ...dataset[index] })
           // console.log(dataset[index])
         }}
       >
-        <ListItemIcon>
+        <ListItemIcon
+          sx={{
+            minWidth: 42,
+          }}
+        >
           {selected ? <HighlightOffIcon color="error" /> : <PlaceIcon />}
         </ListItemIcon>
         <ListItemText

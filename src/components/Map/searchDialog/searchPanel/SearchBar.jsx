@@ -5,50 +5,45 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import MenuIcon from '@mui/icons-material/Menu'
 import Stack from '@mui/material/Stack'
 
 import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 
 function SearchBar({ searchText, setSearchText }) {
-  const { setIsSearchPanelOpen } = useGlobalSetting()
+  const { setIsSearchPanelOpen, openFpanel, setOpenFpanel } = useGlobalSetting()
 
   return (
     <>
       <Stack
-        direction='row'
+        direction="row"
         spacing={1}
         sx={{
-          px: {
-            xs: 1,
-            sm: 2,
-          },
-          pt: {
-            xs: 1,
-            sm: 2,
-          },
+          px: 1,
+          pt: 1,
         }}
       >
         <IconButton
-          aria-label='back button'
-          // edge={false}
-          edge='start'
-          onClick={() => setIsSearchPanelOpen(false)}
+          aria-label="back button"
+          edge={false}
+          // edge="start"
+          onClick={() => setOpenFpanel((open) => !open)}
         >
-          <ArrowBackIosNewIcon />
+          {openFpanel ? <ArrowBackIosNewIcon /> : <MenuIcon />}
         </IconButton>
 
         <OutlinedInput
-          id='outlined-adornment-password'
-          type='text'
+          id="outlined-adornment-password"
+          type="text"
           fullWidth
-          size='small'
+          size="small"
           value={searchText}
           onInput={(event) => setSearchText(event.target.value)}
           startAdornment={
-            <InputAdornment position='start'>
+            <InputAdornment position="start">
               <IconButton
-                aria-label='search button'
-                edge='start'
+                aria-label="search button"
+                edge="start"
                 style={{ pointerEvents: 'none' }}
               >
                 <SearchIcon />
@@ -56,10 +51,10 @@ function SearchBar({ searchText, setSearchText }) {
             </InputAdornment>
           }
           endAdornment={
-            <InputAdornment position='end'>
+            <InputAdornment position="end">
               <IconButton
-                aria-label='close button'
-                edge='end'
+                aria-label="close button"
+                edge="end"
                 onClick={() => setSearchText('')}
               >
                 <CloseIcon />

@@ -170,7 +170,7 @@ function BottomRight() {
           <RemoveIcon />
         </Fab>
 
-        <Fab
+        {/* <Fab
           color="whiteBtn"
           aria-label="translate"
           size="small"
@@ -185,7 +185,7 @@ function BottomRight() {
           }}
         >
           <SearchIcon />
-        </Fab>
+        </Fab> */}
 
         <Fab
           color="whiteBtn"
@@ -202,7 +202,7 @@ function BottomRight() {
         </Fab>
       </Box>
 
-      <SearchDialog />
+      {/* <SearchDialog /> */}
 
       <Dialog
         sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
