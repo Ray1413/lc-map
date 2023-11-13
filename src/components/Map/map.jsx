@@ -18,6 +18,7 @@ import Control from './Control'
 import useFilteredDataset from '@/hooks/useFilteredDataset'
 import fetchFacility from '@/utils/fetchFacility'
 import MarkerClusterLayer from './MarkerClusterLayer'
+import ExposeMap from './ExposeMap'
 
 function Map() {
   let zoom = 11
@@ -82,6 +83,7 @@ function Map() {
         maxBoundsViscosity={0.5}
         style={{ height: '100%' }}
       >
+        <ExposeMap />
         <AttributionPrefix />
         <Control />
 

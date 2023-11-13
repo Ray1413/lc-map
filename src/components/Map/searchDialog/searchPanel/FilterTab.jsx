@@ -49,6 +49,7 @@ function FilterTab({ searchText }) {
     selectedProvider,
     setSelectedCategory,
     setSelectedProvider,
+    map,
   } = useGlobalSetting()
 
   const cateIconWithBadge = useMemo(() => {
@@ -190,12 +191,15 @@ function FilterTab({ searchText }) {
     // console.log(item)
     setSelectedCategory(item.en == 'All' ? {} : item)
     setValue(false) /* close tab */
+    if (map) {
+      map.setView([22.3400052, 114.1545354], 11)
+    }
   }
-  const handleProviderItemClick = (event, item) => {
-    // console.log(item)
-    setSelectedProvider(item.en == 'All' ? null : item.en)
-    setValue(false) /* close tab */
-  }
+  // const handleProviderItemClick = (event, item) => {
+  //   // console.log(item)
+  //   setSelectedProvider(item.en == 'All' ? null : item.en)
+  //   setValue(false) /* close tab */
+  // }
 
   const checkItemSelected = (selectedValue) => (item) =>
     selectedValue == item.en
