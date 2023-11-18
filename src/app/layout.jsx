@@ -4,6 +4,7 @@ import AppProvider from '@/components/AppProvider'
 import Box from '@mui/material/Box'
 import Map from '@/components/Map'
 import Fpanel from '@/components/Fpanel'
+import LoadingPage from '@/components/LoadingPage'
 
 export const metadata = {
   title: 'LC Map',
@@ -20,10 +21,11 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="./css/MarkerCluster.Default.css"></link>
         <link rel="stylesheet" href="./css/MarkerCluster.Custom.css"></link>
       </head>
-      <body style={{ background: 'lightyellow' }}>
+      <body>
         <AppProvider>
           <ThemeRegistry>
             <Box>
+              <LoadingPage />
               <Map />
               <Fpanel />
             </Box>

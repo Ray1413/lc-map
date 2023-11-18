@@ -16,11 +16,11 @@ function Fpanel() {
 
   useEffect(() => {
     setShowSearchPanel(true)
-    setTimeout(() => {
-      if (window.innerWidth >= theme.breakpoints.values.sm) {
-        setOpenFpanel(true)
-      }
-    }, 1500)
+    // setTimeout(() => {
+    //   if (window.innerWidth >= theme.breakpoints.values.sm) {
+    //     setOpenFpanel(true)
+    //   }
+    // }, 1500)
   }, [])
 
   return (

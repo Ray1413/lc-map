@@ -8,6 +8,7 @@ const GlobalSettingContextProvider = GlobalSettingContext.Provider
 
 const useDefaultSetting = () => {
   const [map, setMap] = useState(null)
+  const [mapLoaded, setMapLoaded] = useState(false)
   // const [lang, setLang] = useState(defaultLang)
   const [resource, setResource] = useState({})
 
@@ -74,6 +75,8 @@ const useDefaultSetting = () => {
     // setLang,
     map,
     setMap,
+    mapLoaded,
+    setMapLoaded,
     resource,
     setResource,
     datasetInfo,

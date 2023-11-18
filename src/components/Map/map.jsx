@@ -19,6 +19,7 @@ import useFilteredDataset from '@/hooks/useFilteredDataset'
 import fetchFacility from '@/utils/fetchFacility'
 import MarkerClusterLayer from './MarkerClusterLayer'
 import ExposeMap from './ExposeMap'
+import SetMapEvents from './SetMapEvents'
 
 function Map() {
   let zoom = 11
@@ -30,7 +31,7 @@ function Map() {
     [22.133333, 114.516667],
   ]
 
-  const { setDatasetInfo } = useGlobalSetting()
+  const { setDatasetInfo, setOpenFpanel } = useGlobalSetting()
 
   const { language } = useParams()
   let langValue
@@ -69,6 +70,7 @@ function Map() {
       })
       // console.log(info.dataset.slice(0, 4))
       setDatasetInfo(info)
+      setOpenFpanel(true)
     })()
   }, [])
 
@@ -83,6 +85,7 @@ function Map() {
         maxBoundsViscosity={0.5}
         style={{ height: '100%' }}
       >
+        <SetMapEvents />
         <ExposeMap />
         <AttributionPrefix />
         <Control />
