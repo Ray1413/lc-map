@@ -16,6 +16,7 @@ import useGlobalSetting from '../../../../hooks/useGlobalSetting'
 import highlightText from '../../../../utils/highlightText'
 import { useParams } from 'next/navigation'
 import { useTheme } from '@mui/material'
+import isMobile from '@/utils/isMobile'
 
 const TitleWithIndex = ({ indexStr, children }) => (
   <span>
@@ -120,7 +121,7 @@ const RenderRow = memo((props) => {
         onClick={() => {
           // setIsSearchPanelOpen(false)
           // setSelectedFacility(dataset[index])
-          if (window.innerWidth < theme.breakpoints.values.sm) {
+          if (isMobile()) {
             setOpenFpanel(false)
           }
           setSelectedFacility({ ...dataset[index] })

@@ -20,6 +20,7 @@ import fetchFacility from '@/utils/fetchFacility'
 import MarkerClusterLayer from './MarkerClusterLayer'
 import ExposeMap from './ExposeMap'
 import SetMapEvents from './SetMapEvents'
+import isMobile from '@/utils/isMobile'
 
 function Map() {
   let zoom = 11
@@ -70,7 +71,9 @@ function Map() {
       })
       // console.log(info.dataset.slice(0, 4))
       setDatasetInfo(info)
-      setOpenFpanel(true)
+      if (!isMobile()) {
+        setOpenFpanel(true)
+      }
     })()
   }, [])
 
