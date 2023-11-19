@@ -5,6 +5,7 @@ import GlassmorphismCard from './GlassmorphismCard'
 
 function LoadingPage() {
   const { mapLoaded } = useGlobalSetting()
+  // const mapLoaded = false
 
   return (
     <Fade in={!mapLoaded} appear={false} timeout={1200}>
@@ -15,7 +16,9 @@ function LoadingPage() {
           width: '100%',
           height: '100%',
           // background: (theme) => theme.palette.background.paper,
-          background: '#4a81de center no-repeat url("/img/world_map.png")',
+          // background: '#4a81de center no-repeat url("/img/world_map.png")',
+          background:
+            '#4a81de center/cover no-repeat url("/img/City_map2v.jpg")',
         }}
       >
         <GlassmorphismCard
@@ -37,8 +40,8 @@ function LoadingPage() {
                 fontSize: '50px',
                 fontWeight: 'bold',
                 letterSpacing: '2px',
-                // background: 'linear-gradient(90deg,#eeac43,#f15874)',
-                background: 'linear-gradient(90deg,#cee610,#f15874)',
+                background: 'linear-gradient(90deg,#eeac43,#f15874)',
+                // background: 'linear-gradient(90deg,#cee610,#f15874)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
