@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[204],{9204:function(e){e.exports=JSON.parse('{"language":"語言","cancel":"取消","facility":"設施","facilities":"設施","result":"結果","results":"結果","category":"分類"}')}}]);
