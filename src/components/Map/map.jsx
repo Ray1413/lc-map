@@ -21,6 +21,8 @@ import MarkerClusterLayer from './MarkerClusterLayer'
 import ExposeMap from './ExposeMap'
 import SetMapEvents from './SetMapEvents'
 import isMobile from '@/utils/isMobile'
+import { defaultLocale } from '@/resources'
+import { redirect } from 'next/navigation'
 
 function Map() {
   let zoom = 11
@@ -34,7 +36,12 @@ function Map() {
 
   const { setDatasetInfo, setOpenFpanel } = useGlobalSetting()
 
-  const { language } = useParams()
+  let { language } = useParams()
+  if (!language) {
+    redirect(`/${defaultLocale}`)
+    return
+  }
+
   let langValue
   switch (language) {
     case 'zh':
@@ -75,7 +82,7 @@ function Map() {
         setOpenFpanel(true)
       }
     })()
-  }, [])
+  }, [language])
 
   return (
     <div style={{ height: '100vh' }}>
