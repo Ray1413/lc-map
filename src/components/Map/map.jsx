@@ -85,7 +85,7 @@ function Map() {
   }, [language])
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '100svh' }}>
       <MapContainer
         center={center}
         zoom={zoom}

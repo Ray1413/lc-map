@@ -47,7 +47,7 @@ function Fpanel() {
               xs: '100vw',
               sm: panelWidth,
             },
-            height: `calc(100vh - ${margin * 2}px)`,
+            height: `calc(100svh - ${margin * 2}px)`,
             // zIndex: 1300,
           }}
         >
