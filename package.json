@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && touch docs/.nojekyll && touch docs/CNAME && printf '%s' 'lc-map.ray1413.com' > docs/CNAME",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
