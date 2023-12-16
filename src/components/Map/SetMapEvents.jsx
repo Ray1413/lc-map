@@ -9,7 +9,7 @@ function SetMapEvents() {
       if (e.layer.getMaplibreMap) {
         const glMap = e.layer.getMaplibreMap()
         glMap.on('load', () => {
-          console.log('load')
+          // console.log('load')
           setMapLoaded(true)
         })
       }
